@@ -7,6 +7,7 @@ import Signup from "./Pages/Signup";
 import Artist from "./Pages/ArtistsDashboard";
 import Dashboard from "./Pages/Dashboard";
 import Settings from "./Pages/Settings";
+import NoMatch from "./Pages/NoMatch";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/artistDash/:id" component={Artist} />
           <Route exact path="/signup" component={Signup} /> 
           <Route exact path="/settings" component={Settings} />
+          <Route component={NoMatch} />
         </Switch>
       </div>
     </Router>
