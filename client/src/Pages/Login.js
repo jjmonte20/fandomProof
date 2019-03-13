@@ -26,14 +26,18 @@ class Login extends Component {
     render() {
         return (
             <div className="container">
-                Login info below
+                Please Login
+                <br/>
+                <br/>
                 <form>
+                    <label htmlFor="Username">Username</label>
                     <Input
                         value={this.state.name}
                         onChange={this.handleInputChange}
                         name="name"
                         placeholder="John Smith" 
                     />
+                    <label htmlFor="Password">Password</label>
                     <Input
                         value={this.state.password}
                         onChange={this.handleInputChange}

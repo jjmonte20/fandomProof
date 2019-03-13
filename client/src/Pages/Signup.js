@@ -28,19 +28,24 @@ class Signup extends Component {
         return (
             <div className="container">
                 Signup for an account
+                <br/>
+                <br/>
                 <form>
+                    <label htmlFor="username">Username</label>
                     <Input
                         value={this.state.name}
                         onChange={this.handleInputChange}
                         name="name"
                         placeholder="darkMaster" 
                     />
+                    <label htmlFor="password">Password</label>
                     <Input
                         value={this.state.password}
                         onChange={this.handleInputChange}
                         name="password"
                         placeholder="password" 
                     />
+                    <label htmlFor="fullname">First and Last Name</label>
                     <Input
                         value={this.state.fullname}
                         onChange={this.handleInputChange}

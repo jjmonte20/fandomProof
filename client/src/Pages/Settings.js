@@ -28,19 +28,24 @@ class Settings extends Component {
         return (
             <div className="container">
                 Adjust Settings
+                <br/>
+                <br/>
                 <form>
+                    <label htmlFor="Username">Username</label>
                     <Input
                         value={this.state.name}
                         onChange={this.handleInputChange}
                         name="name"
                         placeholder="New Username" 
                     />
+                    <label htmlFor="Password">Password</label>
                     <Input
                         value={this.state.password}
                         onChange={this.handleInputChange}
                         name="password"
                         placeholder="New Password" 
                     />
+                    <label htmlFor="First and Last Name">First and Last Name</label>
                     <Input
                         value={this.state.fullname}
                         onChange={this.handleInputChange}

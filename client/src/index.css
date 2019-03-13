@@ -3,3 +3,19 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+button {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  float: right;
+}
+
+.filterArtists {
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.fanChainNumbers {
+  margin-bottom: 2%;
+  text-align: center;
+}

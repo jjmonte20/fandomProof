@@ -14,7 +14,14 @@ export default {
         {headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
     },
     transferToken: function(data) {
-        return axios.put("http://40.87.80.12:10053/transfer-token?id=" + data.id + "&newOwner=" + data.newOwner, null, 
+        var port = 10053;
+        if (data.newOwner == "FanA") {
+            port = 10056;
+        }
+        else if (data.newOwner == "FanB") {
+            port = 10053;
+        }
+        return axios.put(`http://40.87.80.12:${port}/transfer-token?id=` + data.id + "&newOwner=" + data.newOwner, null, 
         {headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
     },
     loadTokens: function () {
