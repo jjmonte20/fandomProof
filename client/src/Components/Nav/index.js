@@ -4,7 +4,7 @@ function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand" href="/">
-        Fandom Proof
+        FanChain
       </a> 
       <li className="nav-item">
         <a className="nav-link" href="/login">

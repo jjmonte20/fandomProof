@@ -73,7 +73,7 @@ class Home extends Component {
         return (
             <div className="container">
                 <Jumbotron>
-                    <h1>Welcome to FanProof</h1>
+                    <h1>FanA's FanChain: {filteredTokens.length} items</h1> 
                     <div>
                         {filteredTokens.length ? (
                             <List>
