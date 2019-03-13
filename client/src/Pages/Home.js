@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { Input, TextArea, FormBtn } from "../Components/Form";
 import API from "../utils/API";
+import Jumbotron from "../Components/Jumbotron";
 
 class Home extends Component {
     state={
         name: "",
         password: "",
+    }
+
+    componentDidMount() {
+        API.getTracks().then(res => console.log(res.data));
     }
 
     handleInputChange = e => {
@@ -26,27 +31,9 @@ class Home extends Component {
     render() {
         return (
             <div className="container">
-                Welcome to Fan Proof
-                <form>
-                    <Input
-                        value={this.state.name}
-                        onChange={this.handleInputChange}
-                        name="name"
-                        placeholder="John Smith" 
-                    />
-                    <Input
-                        value={this.state.password}
-                        onChange={this.handleInputChange}
-                        name="password"
-                        placeholder="password" 
-                    />
-                    <FormBtn
-                        disabled={!(this.state.name && this.state.password)}
-                        onClick={this.handFormSubmit}
-                    >
-                    Submit
-                    </FormBtn>
-                </form>
+                <Jumbotron>
+                  <h1>Welcome to FanProof</h1>  
+                </Jumbotron>
             </div>
         );
     }
