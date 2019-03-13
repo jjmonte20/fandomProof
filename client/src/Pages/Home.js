@@ -13,6 +13,10 @@ class Home extends Component {
         track: []
     }
 
+    componentDidMount() {
+        this.loadTokens();
+    }
+
     handleInputChange = e => {
         const { name, value } = e.target;
         this.setState({
@@ -26,6 +30,10 @@ class Home extends Component {
             console.log(this.state.name);
             console.log(this.state.password);
         }
+    }
+
+    loadTokens = () => {
+        API.loadTokens().then(res => console.log(res));
     }
 
     render() {

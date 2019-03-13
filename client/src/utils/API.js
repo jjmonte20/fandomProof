@@ -8,7 +8,7 @@ export default {
     transferToken: function(id, newOwner) {
         return axios.put("/transfer-token", id, newOwner);
     },
-    tokens: function () {
+    loadTokens: function () {
         return axios.get("/tokens");
     },
 // 3rd party API's
