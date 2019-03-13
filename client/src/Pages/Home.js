@@ -7,6 +7,8 @@ import tracks from "../userData.json";
 
 class Home extends Component {
     state={
+        currentUser: "FanA",
+        secondaryUser: "FanB",
         name: "",
         password: "",
         tracks,
@@ -14,6 +16,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
+        this.setState({currentUser: "FanA"});
         this.loadTokens();
         this.loadFandom();
     }
@@ -42,7 +45,7 @@ class Home extends Component {
 
     addToken = body => {
         API.createToken({
-            owner: "FanA", 
+            owner: this.state.currentUser, 
             description: body
         }).then(res => {
             alert(res.data);
@@ -50,30 +53,46 @@ class Home extends Component {
         });
     }
 
-    loadFandom = () => {
-        console.log(this.state.fandom);
+    loadFandom = (user) => {
+        //this.setState({currentUser: user});
+        console.log(user);
     }
 
     giftToFriend = (thing) => {
         API.transferToken({
             id: thing,
-            newOwner: "FanB"
+            newOwner: this.state.secondaryUser
         }).then(res => {
             alert(res.data);
             this.loadTokens();
         });
     }
 
+    switchUser = () => {
+        var curr = this.state.currentUser;
+        var newUser = this.state.secondaryUser;
+        this.setState({currentUser: newUser, secondaryUser: curr});
+    }
+
     render() {
+
+        console.log(this.state.currentUser)
         let filteredTokens = this.state.fandom.filter(
             (token) => {
-                return token.owner.indexOf("FanB");
+                return token.owner.indexOf(this.state.secondaryUser);
             }
         );
+
+        console.log(this.state.currentUser)
+
         return (
+            
             <div className="container">
+                <button type="button" className="btnSwitchUser btn btn-success" onClick={(e) => {this.switchUser()}}>
+                    Switch User
+                </button>
                 <Jumbotron>
-                    <h1>FanA's FanChain: {filteredTokens.length} items</h1> 
+                    <h1>{this.state.currentUser}'s FanChain: {filteredTokens.length} items</h1> 
                     <div>
                         {filteredTokens.length ? (
                             <List>
@@ -84,13 +103,13 @@ class Home extends Component {
                                         </strong>
                                         <div class="dropdown">
                                             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Fan B
+                                                {this.state.secondaryUser}
                                             </button>
                                             <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <button className="dropdown-item" type="button">FanB</button>
+                                                <button className="dropdown-item" type="button">{this.state.secondaryUser}</button>
                                             </div>
                                         </div>
-                                        <button type="button" className="btnKeyGift btn btn-success" onClick={(e) => { if (window.confirm(`Please confirm your FanChain transfer to FanB ${item.description} from ${item.creator}`))  this.giftToFriend(item.id)}}>
+                                        <button type="button" className="btnKeyGift btn btn-success" onClick={(e) => { if (window.confirm(`Please confirm you wish to FanChain transfer ${item.description} to ${this.state.secondaryUser} from ${item.creator}`))  this.giftToFriend(item.id)}}>
                                             Gift to
                                         </button>
                                     </ListItem>
