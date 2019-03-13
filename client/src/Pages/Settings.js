@@ -27,6 +27,8 @@ class Settings extends Component {
     render() {
         return (
             <div className="container">
+                <br />
+                <br />
                 Adjust Settings
                 <br/>
                 <br/>
