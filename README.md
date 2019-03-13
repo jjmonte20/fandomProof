@@ -9,11 +9,13 @@ Paths:
 * GET /tokens
 
 * POST /create-token
-    parameters
+
+    parameters:
         owner: string
         description: string
       
 * POST /transfer-token
-    parameters
+
+    parameters:
         id: string
         newOwner: string
