@@ -7,6 +7,10 @@ class Artist extends Component {
         
     }
     // Dashboard will be a splash page for the user's account
+    componentDidMount() {
+        
+    }
+
 
     render() {
         return (
