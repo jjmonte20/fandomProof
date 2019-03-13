@@ -7,6 +7,7 @@ import net.corda.core.contracts.StateAndRef
 import net.corda.core.contracts.UniqueIdentifier
 import net.corda.core.flows.*
 import net.corda.core.identity.Party
+import net.corda.core.node.StatesToRecord
 import net.corda.core.transactions.SignedTransaction
 import net.corda.core.transactions.TransactionBuilder
 import net.corda.core.utilities.ProgressTracker
@@ -42,8 +43,11 @@ class TransferInitiator(val stateRef: StateAndRef<TokenState>, val newOwner: Par
         // We sign the transaction with our private key, making it immutable.
         val signedTransaction = serviceHub.signInitialTransaction(transactionBuilder)
 
+        val flowSession = initiateFlow(newOwner)
+        val issuerSession = initiateFlow(currentState.creator)
+
         // We get the transaction notarised and recorded automatically by the platform.
-        return subFlow(FinalityFlow(signedTransaction, emptyList()))
+        return subFlow(FinalityFlow(signedTransaction, listOf(flowSession, issuerSession)))
     }
 }
 
@@ -51,6 +55,6 @@ class TransferInitiator(val stateRef: StateAndRef<TokenState>, val newOwner: Par
 class TransferResponder(val counterpartySession: FlowSession) : FlowLogic<Unit>() {
     @Suspendable
     override fun call() {
-        // Responder flow logic goes here.
+        subFlow(ReceiveFinalityFlow(counterpartySession, statesToRecord = StatesToRecord.ALL_VISIBLE))
     }
 }

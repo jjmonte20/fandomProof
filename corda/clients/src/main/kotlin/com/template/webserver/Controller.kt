@@ -98,21 +98,18 @@ class Controller(rpc: NodeRPCConnection) {
     fun transferToken(request: HttpServletRequest): ResponseEntity<String> {
 
         val id = request.getParameter("id")
-        if(id == null){
-            return ResponseEntity.badRequest().body("Query parameter 'id' must not be null.\n")
-        }
-        val linearId = id as UniqueIdentifier
+                ?: return ResponseEntity.badRequest().body("Query parameter 'id' must not be null.\n")
+        val linearId = UniqueIdentifier.fromString(id)
 
         val newOwner = request.getParameter("newOwner")
-        val partyX500Name = CordaX500Name.parse(newOwner)
-        val otherParty = proxy.wellKnownPartyFromX500Name(partyX500Name) ?: return ResponseEntity.badRequest().body("Party named $newOwner cannot be found.\n")
+                ?: return ResponseEntity.badRequest().body("Query parameter 'owner' must not be null.\n")
+
+        val possibleParties = proxy.partiesFromName(newOwner, false)
+        val otherParty = possibleParties.iterator().next()
 
         return try {
-
             val token: StateAndRef<TokenState> = proxy.vaultQueryBy<TokenState>().states.filter { it.state.data.linearId == linearId }.first()
-
             val signedTx = proxy.startTrackedFlow(::TransferInitiator, token, otherParty).returnValue.getOrThrow()
-
             ResponseEntity.status(HttpStatus.CREATED).body("Transaction id ${signedTx.id} committed to ledger.\n")
 
         } catch (ex: Throwable) {
@@ -120,10 +117,6 @@ class Controller(rpc: NodeRPCConnection) {
             ResponseEntity.badRequest().body(ex.message!!)
         }
     }
-
-
-
-
 
 
 }

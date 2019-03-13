@@ -51,5 +51,5 @@ task runFanA(type: JavaExec, dependsOn: assemble) {
 task runFanB(type: JavaExec, dependsOn: assemble) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'com.template.webserver.ServerKt'
-    args '--server.port=10056', '--config.rpc.host=localhost', '--config.rpc.port=100012', '--config.rpc.username=user1', '--config.rpc.password=test'
+    args '--server.port=10056', '--config.rpc.host=localhost', '--config.rpc.port=10012', '--config.rpc.username=user1', '--config.rpc.password=test'
 }
