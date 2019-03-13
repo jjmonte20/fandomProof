@@ -10,12 +10,12 @@ class Home extends Component {
         name: "",
         password: "",
         tracks,
-        track: []
+        fandom: ""
     }
 
     componentDidMount() {
         this.loadTokens();
-        console.log(this.state.tracks);
+        this.loadFandom();
     }
 
     handleInputChange = e => {
@@ -42,6 +42,10 @@ class Home extends Component {
             owner: "FanA", 
             description: body
         }).then(res => console.log(res));
+    }
+
+    loadFandom = () => {
+        
     }
 
     render() {
