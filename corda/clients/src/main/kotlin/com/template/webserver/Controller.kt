@@ -33,6 +33,7 @@ class Controller(rpc: NodeRPCConnection) {
     /**
      * Returns the node's name.
      */
+    @CrossOrigin
     @GetMapping(value = "me", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun whoami() = mapOf("me" to myLegalName)
 
@@ -40,6 +41,7 @@ class Controller(rpc: NodeRPCConnection) {
     /**
      * Displays all IOU states that exist in the node's vault.
      */
+    @CrossOrigin
     @GetMapping(value = "tokens", produces = arrayOf("application/json"))
     private fun tokens(): List<Map<String, String>> {
         val states = proxy.vaultQuery(TokenState::class.java).states
@@ -69,6 +71,7 @@ class Controller(rpc: NodeRPCConnection) {
      * The flow is invoked asynchronously. It returns a future when the flow's call() method returns.
      */
 
+    @CrossOrigin
     @PostMapping(value = "create-token", produces = arrayOf("text/plain"), headers = arrayOf("Content-Type=application/x-www-form-urlencoded"))
     fun createToken(request: HttpServletRequest): ResponseEntity<String> {
 
@@ -94,6 +97,7 @@ class Controller(rpc: NodeRPCConnection) {
         }
     }
 
+    @CrossOrigin
     @PutMapping(value = "transfer-token", produces = arrayOf("text/plain"), headers = arrayOf("Content-Type=application/x-www-form-urlencoded"))
     fun transferToken(request: HttpServletRequest): ResponseEntity<String> {
 
