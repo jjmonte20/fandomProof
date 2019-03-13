@@ -15,6 +15,7 @@ class Home extends Component {
 
     componentDidMount() {
         this.loadTokens();
+        console.log(this.state.tracks);
     }
 
     handleInputChange = e => {
@@ -36,10 +37,10 @@ class Home extends Component {
         API.loadTokens().then(res => console.log(res));
     }
 
-    addToken = () => {
+    addToken = body => {
         API.createToken({
             owner: "FanA", 
-            description: "Eminem Hoodie"
+            description: body
         }).then(res => console.log(res));
     }
 
@@ -62,6 +63,7 @@ class Home extends Component {
                                         <strong>
                                             {song.track.name} by {song.track.artists[0].name}
                                         </strong>
+                                        <button type="button" classname="btnKeyAdd btn btn-success" onClick={() => this.addToken(song.track.artists[0].name)}>Purchase</button>
                                     </ListItem>
                                 ))}
                             </List>
