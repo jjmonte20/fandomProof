@@ -8,6 +8,7 @@ import Artist from "./Pages/ArtistsDashboard";
 import Dashboard from "./Pages/Dashboard";
 import Settings from "./Pages/Settings";
 import NoMatch from "./Pages/NoMatch";
+import CSS from "./index.css";
 
 function App() {
   return (

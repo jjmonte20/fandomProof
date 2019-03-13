@@ -82,8 +82,16 @@ class Home extends Component {
                                         <strong>
                                             {item.description} from {item.creator}
                                         </strong>
-                                        <button type="button" className="btnKeyGift btn btn-success" onClick={() => this.giftToFriend(item.id)}>
-                                            Gift to friend
+                                        <div class="dropdown">
+                                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Fan B
+                                            </button>
+                                            <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                <button className="dropdown-item" type="button">FanB</button>
+                                            </div>
+                                        </div>
+                                        <button type="button" className="btnKeyGift btn btn-success" onClick={(e) => { if (window.confirm(`Please confirm your FanChain transfer to FanB ${item.description} from ${item.creator}`))  this.giftToFriend(item.id)}}>
+                                            Gift to
                                         </button>
                                     </ListItem>
                                 ))}
