@@ -36,13 +36,20 @@ class Home extends Component {
         API.loadTokens().then(res => console.log(res));
     }
 
+    addToken = () => {
+        API.createToken({
+            owner: "FanA", 
+            description: "Eminem Hoodie"
+        }).then(res => console.log(res));
+    }
+
     render() {
         return (
             <div className="container">
                 <Jumbotron>
                     <h1>Welcome to FanProof</h1>
                     <FormBtn
-                        onClick={this.loadTracks}
+                        onClick={this.addToken}
                     >
                         Log tracks
                     </FormBtn> 
