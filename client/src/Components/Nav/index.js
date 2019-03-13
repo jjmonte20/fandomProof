@@ -21,6 +21,11 @@ function Nav() {
           Settings
         </a>
       </li>
+      <li className="nav-item">
+        <a className="nav-link" href="/artistDash/1">
+          Artists/Publishers
+        </a>
+      </li>
     </nav>
   );
 }

@@ -8,7 +8,7 @@ import Artist from "./Pages/ArtistsDashboard";
 import Dashboard from "./Pages/Dashboard";
 import Settings from "./Pages/Settings";
 import NoMatch from "./Pages/NoMatch";
-import CSS from "./index.css";
+import Promotions from "./Pages/Promotions";
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
           <Route exact path="/artistDash/:id" component={Artist} />
           <Route exact path="/signup" component={Signup} /> 
           <Route exact path="/settings" component={Settings} />
+          <Route exact path="/promotions/:id" component={Promotions} />
           <Route component={NoMatch} />
         </Switch>
       </div>

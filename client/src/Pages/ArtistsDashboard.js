@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Input, TextArea, FormBtn } from "../Components/Form";
 import API from "../utils/API";
 
@@ -80,7 +81,7 @@ class Artist extends Component {
                         <div className="card">
                             {filteredArtists.map(artist => (
                                 <div className="card-body">
-                                <strong>{artist.description}</strong>
+                                <Link to={"/promotions/" + artist.description}><strong>{artist.description}</strong></Link>
                                 </div>
                             ))}
                         </div>
