@@ -62,7 +62,8 @@ class Artist extends Component {
 
                 <br/><br/> Images: {JSON.stringify(this.state.images)}
                 <br/><br/>
-                <form>
+                <form className="filterArtists">
+                    <label htmlFor="fuzzySearch">Search Artists for FanChain Following</label>
                     <input
                         className="form-control"
                         type="search"
@@ -74,7 +75,7 @@ class Artist extends Component {
                         />
                 </form>
                 <div>
-                    Artist FanChain: {filteredArtists.length}
+                    <h2 className="fanChainNumbers">Artist FanChain: {filteredArtists.length}</h2>
                     {filteredArtists.length ? (
                         <div className="card">
                             {filteredArtists.map(artist => (
