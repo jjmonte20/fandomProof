@@ -29,12 +29,6 @@ class Artist extends Component {
         });
     }
 
-    
-    
-
-
-
-
 
     render() {
         return (

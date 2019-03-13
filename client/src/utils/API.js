@@ -8,14 +8,20 @@ var token = process.env.REACT_APP_SPOTIFY_TOKEN;
 
 export default {
 // Blockchain API
-    createToken: function(id, description) {
-        return axios.post("/create-token", id, description);
+    createToken: function(data) {
+        console.log(data);
+        return axios.post("http://40.87.80.12:10050/create-token?owner=" + data.owner + "&description=" + data.description, null, 
+        {headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
     },
-    transferToken: function(id, newOwner) {
-        return axios.put("/transfer-token", id, newOwner);
+    transferToken: function(data) {
+        return axios.put("http://40.87.80.12:10053/transfer-token?id=" + data.id + "&newOwner=" + data.newOwner, null, 
+        {headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
     },
-    tokens: function () {
-        return axios.get("/tokens");
+    loadTokens: function () {
+        return axios.get("http://40.87.80.12:10053/tokens");
+    },
+    loadPublisherTokens: function() {
+        return axios.get("http://40.87.80.12:10050/tokens");
     },
 // 3rd party API's
     // spotify

@@ -2,15 +2,20 @@ import React, { Component } from "react";
 import { Input, TextArea, FormBtn } from "../Components/Form";
 import API from "../utils/API";
 import Jumbotron from "../Components/Jumbotron";
+import { List, ListItem } from "../Components/List";
+import tracks from "../userData.json";
 
 class Home extends Component {
     state={
         name: "",
         password: "",
+        tracks,
+        track: []
     }
 
     componentDidMount() {
-        API.getTracks().then(res => console.log(res.data));
+        this.loadTokens();
+        console.log(this.state.tracks);
     }
 
     handleInputChange = e => {
@@ -28,12 +33,44 @@ class Home extends Component {
         }
     }
 
+    loadTokens = () => {
+        API.loadTokens().then(res => console.log(res));
+    }
+
+    addToken = body => {
+        API.createToken({
+            owner: "FanA", 
+            description: body
+        }).then(res => console.log(res));
+    }
+
     render() {
         return (
             <div className="container">
                 <Jumbotron>
-                  <h1>Welcome to FanProof</h1>  
+                    <h1>Welcome to FanProof</h1>
+                    <FormBtn
+                        onClick={this.addToken}
+                    >
+                        Log tracks
+                    </FormBtn> 
                 </Jumbotron>
+                    <div>
+                        {this.state.tracks.length ? (
+                            <List>
+                                {this.state.tracks.map(song => (
+                                    <ListItem>
+                                        <strong>
+                                            {song.track.name} by {song.track.artists[0].name}
+                                        </strong>
+                                        <button type="button" classname="btnKeyAdd btn btn-success" onClick={() => this.addToken(song.track.artists[0].name)}>Purchase</button>
+                                    </ListItem>
+                                ))}
+                            </List>
+                        ) : (
+                            <h3>No results to display</h3>
+                        )}
+                    </div>
             </div>
         );
     }
