@@ -45,7 +45,7 @@ class Home extends Component {
             owner: "FanA", 
             description: body
         }).then(res => {
-            console.log(res);
+            alert(res.data);
             this.loadTokens();
         });
     }
@@ -59,7 +59,7 @@ class Home extends Component {
             id: thing,
             newOwner: "FanB"
         }).then(res => {
-            console.log(res);
+            alert(res.data);
             this.loadTokens();
         });
     }
