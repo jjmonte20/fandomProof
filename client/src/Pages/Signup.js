@@ -27,6 +27,8 @@ class Signup extends Component {
     render() {
         return (
             <div className="container">
+                <br />
+                <br />
                 Signup for an account
                 <br/>
                 <br/>

@@ -55,6 +55,8 @@ class Artist extends Component {
         )
         return (
             <div className="container">
+                <br />
+                <br />
                 {/* <b>{this.state.name}</b><br/> */}
                 <h1>Universal's Dashboard</h1> <br/>
                 {/* <b>Spotify Information</b><br/>
