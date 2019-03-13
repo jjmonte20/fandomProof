@@ -12,10 +12,12 @@ Paths:
 
     parameters:
         owner: string
+        
         description: string
       
 * POST /transfer-token
 
     parameters:
         id: string
+        
         newOwner: string
