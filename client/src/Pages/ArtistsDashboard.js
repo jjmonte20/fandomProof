@@ -55,14 +55,14 @@ class Artist extends Component {
         )
         return (
             <div className="container">
-                <b>{this.state.name}</b><br/>
-                Universal's Dashboard <br/><br/>
-                <b>Spotify Information</b><br/>
+                {/* <b>{this.state.name}</b><br/> */}
+                <h1>Universal's Dashboard</h1> <br/>
+                {/* <b>Spotify Information</b><br/>
                 You have {this.state.numFollowers} followers on Spotify.<br/>
                 Your popularity on Spotify is {this.state.popularity}.
 
-                <br/><br/> Images: {JSON.stringify(this.state.images)}
-                <br/><br/>
+                <br/><br/> Images: {JSON.stringify(this.state.images)} */}
+                <br/>
                 <form className="filterArtists">
                     <label htmlFor="fuzzySearch">Search Artists for FanChain Following</label>
                     <input
