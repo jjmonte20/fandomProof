@@ -11,13 +11,11 @@ Paths:
 * POST /create-token
 
     parameters:
-        owner: string
-        
+        owner: string,
         description: string
       
 * POST /transfer-token
 
     parameters:
-        id: string
-        
+        id: string,
         newOwner: string
