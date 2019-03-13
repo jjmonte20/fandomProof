@@ -81,7 +81,7 @@ class Artist extends Component {
                         <div className="card">
                             {filteredArtists.map(artist => (
                                 <div className="card-body">
-                                <Link to={"/promotions/" + artist.description}><strong>{artist.description}</strong></Link>
+                                <Link to={"/promotions/" + artist.description}><strong>{artist.description} token owned by: {artist.owner}</strong></Link>
                                 </div>
                             ))}
                         </div>

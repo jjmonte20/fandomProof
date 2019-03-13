@@ -43,7 +43,7 @@ class Promotions extends Component {
                         name="type"
                         placeholder="Concert, Album, Song..." 
                     />
-                    <label htmlFor="Link">Link to Promotion</label>
+                    <label htmlFor="Link">Promote to</label>
                     <Input
                         value={this.state.link}
                         onChange={this.handleInputChange}
