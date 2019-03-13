@@ -44,7 +44,10 @@ class Home extends Component {
         API.createToken({
             owner: "FanA", 
             description: body
-        }).then(res => console.log(res));
+        }).then(res => {
+            console.log(res);
+            this.loadTokens();
+        });
     }
 
     loadFandom = () => {
@@ -55,7 +58,10 @@ class Home extends Component {
         API.transferToken({
             id: thing,
             newOwner: "FanB"
-        }).then(res => console.log(res));
+        }).then(res => {
+            console.log(res);
+            this.loadTokens();
+        });
     }
 
     render() {
