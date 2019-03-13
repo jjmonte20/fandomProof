@@ -4,7 +4,7 @@ var CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 var CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
 var REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 //var token = ''; //need to implement server side token generation
-var token = 'redacted';
+var token = process.env.REACT_APP_SPOTIFY_TOKEN;
 
 export default {
 // Blockchain API
