@@ -10,12 +10,12 @@ class Home extends Component {
         name: "",
         password: "",
         tracks,
-        track: []
+        fandom: []
     }
 
     componentDidMount() {
         this.loadTokens();
-        console.log(this.state.tracks);
+        this.loadFandom();
     }
 
     handleInputChange = e => {
@@ -34,26 +34,64 @@ class Home extends Component {
     }
 
     loadTokens = () => {
-        API.loadTokens().then(res => console.log(res));
+        API.loadTokens().then(res => {
+            this.setState({ fandom: res.data });
+            this.loadFandom();
+        });
     }
 
     addToken = body => {
         API.createToken({
             owner: "FanA", 
             description: body
-        }).then(res => console.log(res));
+        }).then(res => {
+            console.log(res);
+            this.loadTokens();
+        });
+    }
+
+    loadFandom = () => {
+        console.log(this.state.fandom);
+    }
+
+    giftToFriend = (thing) => {
+        API.transferToken({
+            id: thing,
+            newOwner: "FanB"
+        }).then(res => {
+            console.log(res);
+            this.loadTokens();
+        });
     }
 
     render() {
+        let filteredTokens = this.state.fandom.filter(
+            (token) => {
+                return token.owner.indexOf("FanB");
+            }
+        );
         return (
             <div className="container">
                 <Jumbotron>
                     <h1>Welcome to FanProof</h1>
-                    <FormBtn
-                        onClick={this.addToken}
-                    >
-                        Log tracks
-                    </FormBtn> 
+                    <div>
+                        {filteredTokens.length ? (
+                            <List>
+                                {filteredTokens.map(item => (
+                                    <ListItem>
+                                        <strong>
+                                            {item.description} from {item.creator}
+                                        </strong>
+                                        <button type="button" className="btnKeyGift btn btn-success" onClick={() => this.giftToFriend(item.id)}>
+                                            Gift to friend
+                                        </button>
+                                    </ListItem>
+                                ))}
+                            </List>
+                        ) : (
+                            <h3>No results to display</h3>
+                        )}
+                    </div>
                 </Jumbotron>
                     <div>
                         {this.state.tracks.length ? (
@@ -63,7 +101,7 @@ class Home extends Component {
                                         <strong>
                                             {song.track.name} by {song.track.artists[0].name}
                                         </strong>
-                                        <button type="button" classname="btnKeyAdd btn btn-success" onClick={() => this.addToken(song.track.artists[0].name)}>Purchase</button>
+                                        <button type="button" className="btnKeyAdd btn btn-success" onClick={() => this.addToken(song.track.artists[0].name)}>Purchase</button>
                                     </ListItem>
                                 ))}
                             </List>

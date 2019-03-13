@@ -33,19 +33,19 @@ class Settings extends Component {
                         value={this.state.name}
                         onChange={this.handleInputChange}
                         name="name"
-                        placeholder="darkMaster" 
+                        placeholder="New Username" 
                     />
                     <Input
                         value={this.state.password}
                         onChange={this.handleInputChange}
                         name="password"
-                        placeholder="password" 
+                        placeholder="New Password" 
                     />
                     <Input
                         value={this.state.fullname}
                         onChange={this.handleInputChange}
                         name="fullname"
-                        placeholder="John Doe" 
+                        placeholder="New Name" 
                     />
                     <FormBtn
                         disabled={!(this.state.name && this.state.password)}
